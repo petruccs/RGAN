@@ -13,7 +13,7 @@ import paths
 from scipy.spatial.distance import pdist, squareform
 from scipy.stats import multivariate_normal, invgamma, mode
 from scipy.special import gamma
-from scipy.misc import imresize
+import PIL
 from functools import partial
 from math import ceil
 
@@ -327,7 +327,7 @@ def load_resized_mnist_0_5(new_size, randomize=False):
     samples = samples[np.in1d(labels,[0,1,2,3,4,5])]
     labels = labels[np.in1d(labels,[0,1,2,3,4,5])]
     if new_size != 28:
-        resized_imgs = [imresize(img.reshape([28,28]), [new_size,new_size], interp='lanczos').ravel()[np.newaxis].T
+        resized_imgs = [PIL.Image.Image.resize(img.reshape([28,28]), [new_size,new_size], interp='lanczos').ravel()[np.newaxis].T
                         for img in samples]
         resized_imgs = np.array(resized_imgs)
         resized_imgs = resized_imgs.astype(float)
@@ -348,7 +348,7 @@ def load_resized_mnist(new_size, from_to_digits=(0,2), randomize=False):
     samples = samples[np.in1d(labels,np.arange(from_to_digits[0], from_to_digits[1]+1))]
     labels = labels[np.in1d(labels,np.arange(from_to_digits[0], from_to_digits[1]+1))]
     if new_size != 28:
-        resized_imgs = [imresize(img.reshape([28,28]), [new_size,new_size], interp='lanczos').ravel()[np.newaxis].T
+        resized_imgs = [PIL.Image.Image.resize(img.reshape([28,28]), [new_size,new_size], interp='lanczos').ravel()[np.newaxis].T
                         for img in samples]
         resized_imgs = np.array(resized_imgs)
         resized_imgs = resized_imgs.astype(float)
