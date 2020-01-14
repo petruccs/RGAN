@@ -13,6 +13,7 @@ import paths
 from scipy.spatial.distance import pdist, squareform
 from scipy.stats import multivariate_normal, invgamma, mode
 from scipy.special import gamma
+import PIL
 from functools import partial
 from math import ceil
 
